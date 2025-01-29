@@ -27,26 +27,33 @@ public class Account {
         return balance;
     }
 
-    public void credit(int amount) {
+    public int credit(int amount) {
         balance += amount;
+        return balance;
     }
 
-    public void debit(int amount) {
+    public int debit(int amount) {
         if (amount <= balance) {
             balance -= amount;
         } else {
             System.out.println("Amount exceeded balance.");
         }
+        return balance;
     }
 
-    public void transferTo(Account acc, int amount) {
+    public int transferTo(Account acc, int amount) {
         if (amount > this.balance) {
             System.out.println("Transfer failed: insufficient balance!");
-            return;
         }
         this.debit(amount);
         acc.credit(amount);
         System.out.println("Transferred " + amount + " to " + acc.getName());
+
+        return balance;
+    }
+
+    public String toString() {
+        return "Account[id=" + id + ", name=" + name + ", balance=" + balance + "]";
     }
 
 }
